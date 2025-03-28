@@ -3,25 +3,29 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-
-//		to accept input from user, have to use Scanner Class!
-
-		// Calculate area of rectangle
-		double width = 0;
-		double height = 0;
-		double area = 0;
-
+//		Shopping Cart Program
 		Scanner scanner = new Scanner(System.in);
 
-		System.out.println("Enter width:  ");
-		width = scanner.nextDouble();
+		String item;
+		double price;
+		int quantity;
+		char currency = '$';
+		double total = 0.0;
 
-		System.out.println("Enter height: ");
-		height = scanner.nextDouble();
+		System.out.print("What item would you like to buy: ");
+		item = scanner.nextLine();
 
-		area = width * height;
+		System.out.print("What is the price for each?: ");
+		price = scanner.nextDouble();
 
-		System.out.println("The area is " + area);
+		System.out.print("How many " + item + " would you like to get?: ");
+		quantity = scanner.nextInt();
+
+		total = price * quantity;
+
+		System.out.println("\nYou've bought " + quantity + " " + item + "/s");
+		System.out.println("Your total will be " + currency + total);
+
 		scanner.close();
 	}
 }
