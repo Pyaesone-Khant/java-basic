@@ -1,47 +1,36 @@
+import java.util.Scanner;
+
 public class Main {
 
 	public static void main(String[] args) {
-//		printf() => a method used to format output
 
-//		%[flags][width][.precision][specifier-character]
+//		compound interest calculator
+//		formula => A = P [1 + (r/n)] pow n*t
 
-//		[flags]
-//		+ => output a plus
-//		- => comma grouping separator
-//		( => negative numbers are enclosed in ()
-//		space => display a minus if negative, space if positive
+		Scanner sc = new Scanner(System.in);
 
+		double principal;
+		double rate;
+		int timesCompounded;
+		int years;
+		double amount;
 
-//		[widths]
-//		0 => zero padding
-//		just number => right justified padding
-//		- => left justified padding
+		System.out.print("Enter principal amount: ");
+		principal = sc.nextDouble();
 
+		System.out.print("Enter interest rate amount (in %): ");
+		rate = sc.nextDouble() / 100;
 
-//		[.precision] for float/double
-//		0.1 => 9.9
-//		0.2 => 9.99
-//		0.3 => 9.999
+		System.out.print("Enter the number of times compounded per year: ");
+		timesCompounded = sc.nextInt();
 
+		System.out.print("Enter the number of years: ");
+		years = sc.nextInt();
 
-//		[specifier-character]
-//		s => String
-//		c => char
-//		d => int
-//		f => double
-//		b => booleanfe
+		amount = principal * Math.pow(1 + rate / timesCompounded, timesCompounded * years);
 
+		System.out.printf("The Amount after %d year(s) is: $%,.2f", years, amount);
 
-		String name = "Spongebob";
-		char firstLetter = name.charAt(0);
-		int age = 23;
-		double height = 1.5;
-		boolean isEmployed = true;
-
-		System.out.printf("Hello %s.\n", name);
-		System.out.printf("Your name start with %c.\n", firstLetter);
-		System.out.printf("Your age is %d.\n", age);
-		System.out.printf("Your height is %f.\n", height);
-		System.out.printf("Your isEmployed is %b\n", isEmployed);
+		sc.close();
 	}
 }
