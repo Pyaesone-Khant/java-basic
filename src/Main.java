@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -5,98 +6,109 @@ public class Main {
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
-//		JAVA Banking Program
+//		JAVA Dice Roller Program
 
-//		1. declare variables
-//		2. display menu
-//      3. Get & Process user's choice
-//	    4. showBalance()
-//	    5. deposit()
-//	    6. withdraw()
-//	    7. exit message
+//		declare variables
+//		get # of Dice from user
+//		check if # of Dice > 0
+//		roll all the Dice
+//		get the total
+//		display ASCII of dice
 
-		double balance = 0;
-		boolean isRunning = true;
-		int choice;
+//		1. declaration
+		Random rand = new Random();
 
-		while (isRunning) {
-			System.out.println("******************************");
-			System.out.println("Banking Program");
-			System.out.println("******************************");
-			System.out.println("1. Show Balance");
-			System.out.println("2. Deposit");
-			System.out.println("3. Withdraw");
-			System.out.println("4. Exit");
-			System.out.println("******************************");
+		int numOfDice;
+		int total = 0;
 
-			choice = getChoice();
+//		2. get # of Dice from user
+		numOfDice = getNumOfDice();
 
-			switch (choice) {
-				case 1 -> showBalance(balance);
-				case 2 -> balance += deposit();
-				case 3 -> balance -= withdraw(balance);
-				case 4 -> isRunning = false;
-				default -> System.out.println("Invalid choice");
-			}
+		for (int i = 0; i < numOfDice; i++) {
+			int roll = rand.nextInt(1, 7);
+			total += roll;
+			printDie(roll);
+			System.out.println("You rolled " + roll + ".");
 		}
 
-		System.out.println("******************************");
-		System.out.println("Thank you for using our program. Goodbye!");
+		System.out.println("Total Points: " + total);
 
-		sc.close();
 	}
 
-	static int getChoice() {
-		System.out.print("Enter choice (1-4) : ");
-		int choice = sc.nextInt();
+	static int getNumOfDice() {
+		int numOfDice = 0;
 
-		if (choice < 1 || choice > 4) {
-			System.out.println("INVALID CHOICE! PLEASE ENTER A VALID CHOICE");
-			return getChoice();
-		}
+		System.out.print("Enter the # of dice to roll: ");
+		numOfDice = sc.nextInt();
 
-		return choice;
-	}
-
-	static void showBalance(double balance) {
-		System.out.println("******************************");
-		System.out.printf("TOTAL BALANCE: $%,.2f.\n", balance);
-	}
-
-	static double deposit() {
-		double amount;
-		System.out.print("Enter amount to be deposited: ");
-		amount = sc.nextDouble();
-
-		if (amount <= 0) {
-			System.out.println("******************************");
-			System.out.println("INVALID AMOUNT TO DEPOSIT!");
-			return 0;
+		if (numOfDice > 0) {
+			System.out.println("You rolled the dice " + numOfDice + " time(s).");
+			return numOfDice;
 		} else {
-			System.out.println("******************************");
-			System.out.printf("AMOUNT DEPOSITED: $%,.2f.\n", amount);
-			return amount;
+			System.out.println("Number of dice must be greater than 0! Please try again.");
+			getNumOfDice();
+			return numOfDice;
 		}
 	}
 
-	static double withdraw(double balance) {
-		double amount;
+	static void printDie(int roll) {
 
-		System.out.print("Enter amount to be withdrawn: ");
-		amount = sc.nextDouble();
+		String dice1 = """
+				 -------
+				|       |
+				|   ●   |
+				|       |
+				 -------
+				""";
 
-		if (amount <= 0) {
-			System.out.println("******************************");
-			System.out.println("INVALID AMOUNT TO WITHDRAWN!");
-			return 0;
-		} else if (amount > balance) {
-			System.out.println("******************************");
-			System.out.println("INSUFFICIENT AMOUNT TO WITHDRAWN!");
-			return 0;
-		} else {
-			System.out.println("******************************");
-			System.out.printf("AMOUNT WITHDRAWN: $%,.2f.\n", amount);
-			return amount;
+		String dice2 = """
+				 -------
+				| ●     |
+				|       |
+				|     ● |
+				 -------
+				""";
+
+		String dice3 = """
+				 -------
+				| ●     |
+				|   ●   |
+				|     ● |
+				 -------
+				""";
+
+		String dice4 = """
+				 -------
+				| ●   ● |
+				|       |
+				| ●   ● |
+				 -------
+				""";
+
+		String dice5 = """
+				 -------
+				| ●   ● |
+				|   ●   |
+				| ●   ● |
+				 -------
+				""";
+
+		String dice6 = """
+				 -------
+				| ●   ● |
+				| ●   ● |
+				| ●   ● |
+				 -------
+				""";
+
+		switch (roll) {
+			case 1 -> System.out.print(dice1);
+			case 2 -> System.out.print(dice2);
+			case 3 -> System.out.print(dice3);
+			case 4 -> System.out.print(dice4);
+			case 5 -> System.out.print(dice5);
+			case 6 -> System.out.print(dice6);
+			default -> System.out.print("Invalid Roll!");
 		}
 	}
 }
