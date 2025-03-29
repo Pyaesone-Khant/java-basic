@@ -3,28 +3,22 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-//		Shopping Cart Program
+//		Hypotenuse c = Math.sqrt(a sq + b sq)
 		Scanner scanner = new Scanner(System.in);
 
-		String item;
-		double price;
-		int quantity;
-		char currency = '$';
-		double total = 0.0;
+		double a;
+		double b;
+		double c;
 
-		System.out.print("What item would you like to buy: ");
-		item = scanner.nextLine();
+		System.out.print("Enter the length of side A: ");
+		a = scanner.nextDouble();
 
-		System.out.print("What is the price for each?: ");
-		price = scanner.nextDouble();
+		System.out.print("Enter the length of side B: ");
+		b = scanner.nextDouble();
 
-		System.out.print("How many " + item + " would you like to get?: ");
-		quantity = scanner.nextInt();
+		c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
 
-		total = price * quantity;
-
-		System.out.println("\nYou've bought " + quantity + " " + item + "/s");
-		System.out.println("Your total will be " + currency + total);
+		System.out.println("The Hypotenuse (side C) is: " + c);
 
 		scanner.close();
 	}
