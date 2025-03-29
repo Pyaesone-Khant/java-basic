@@ -2,35 +2,51 @@ import java.util.Scanner;
 
 public class Main {
 
+	public static int getChoice(Scanner scanner) {
+		System.out.print("\nChoose an option: ");
+		int choice = scanner.nextInt();
+
+		if (choice == 1 || choice == 2) {
+			return choice;
+		} else {
+			System.out.println("Invalid choice! Please try again");
+			return getChoice(scanner);
+		}
+	}
+
 	public static void main(String[] args) {
 
-//		compound interest calculator
-//		formula => A = P [1 + (r/n)] pow n*t
+//		Weight conversion program
 
 		Scanner sc = new Scanner(System.in);
 
-		double principal;
-		double rate;
-		int timesCompounded;
-		int years;
-		double amount;
+		double weight;
+		double newWeight;
+		int choice;
 
-		System.out.print("Enter principal amount: ");
-		principal = sc.nextDouble();
+		System.out.println("Weight Conversion Program");
+		System.out.println("Type 1 to convert lbs to kgs");
+		System.out.println("Type 2 to convert kgs to lbs");
 
-		System.out.print("Enter interest rate amount (in %): ");
-		rate = sc.nextDouble() / 100;
+		choice = getChoice(sc);
 
-		System.out.print("Enter the number of times compounded per year: ");
-		timesCompounded = sc.nextInt();
+		if (choice == 1) {
+			System.out.print("Enter your weight in lbs: ");
+			weight = sc.nextDouble();
 
-		System.out.print("Enter the number of years: ");
-		years = sc.nextInt();
+			newWeight = weight * 0.453592;
 
-		amount = principal * Math.pow(1 + rate / timesCompounded, timesCompounded * years);
+			System.out.printf("Your weight in kgs is %.2f.\n", newWeight);
+		} else if (choice == 2) {
+			System.out.print("Enter your weight in kgs: ");
+			weight = sc.nextDouble();
 
-		System.out.printf("The Amount after %d year(s) is: $%,.2f", years, amount);
+			newWeight = weight * 2.20462;
+
+			System.out.printf("Your weight in lbs is %.2f.\n", newWeight);
+		}
 
 		sc.close();
 	}
+
 }
