@@ -3,22 +3,26 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-//		Hypotenuse c = Math.sqrt(a sq + b sq)
+//		circumference = 2 * Math.PI * radius;
+//		area = Math.PI * Math.pow(radius, 2)
+//		volume = (4.0 / 3.0) * Math.PI * Math.pow(radius, 3)
 		Scanner scanner = new Scanner(System.in);
 
-		double a;
-		double b;
-		double c;
+		double radius;
+		double circumference;
+		double area;
+		double volume;
 
-		System.out.print("Enter the length of side A: ");
-		a = scanner.nextDouble();
+		System.out.print("Enter radius: ");
+		radius = scanner.nextDouble();
 
-		System.out.print("Enter the length of side B: ");
-		b = scanner.nextDouble();
+		circumference = 2 * Math.PI * radius;
+		area = Math.PI * Math.pow(radius, 2);
+		volume = (4.0 / 3.0) * Math.PI * Math.pow(radius, 3);
 
-		c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
-
-		System.out.println("The Hypotenuse (side C) is: " + c);
+		System.out.printf("The circumference is: %.1fcm.\n", circumference);
+		System.out.printf("The area is: %.1fcm².\n", area);
+		System.out.printf("The volume is: %.1fcm³.\n", volume);
 
 		scanner.close();
 	}
