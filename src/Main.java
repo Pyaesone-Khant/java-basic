@@ -1,29 +1,47 @@
-import java.util.Scanner;
-
 public class Main {
 
 	public static void main(String[] args) {
-//		circumference = 2 * Math.PI * radius;
-//		area = Math.PI * Math.pow(radius, 2)
-//		volume = (4.0 / 3.0) * Math.PI * Math.pow(radius, 3)
-		Scanner scanner = new Scanner(System.in);
+//		printf() => a method used to format output
 
-		double radius;
-		double circumference;
-		double area;
-		double volume;
+//		%[flags][width][.precision][specifier-character]
 
-		System.out.print("Enter radius: ");
-		radius = scanner.nextDouble();
+//		[flags]
+//		+ => output a plus
+//		- => comma grouping separator
+//		( => negative numbers are enclosed in ()
+//		space => display a minus if negative, space if positive
 
-		circumference = 2 * Math.PI * radius;
-		area = Math.PI * Math.pow(radius, 2);
-		volume = (4.0 / 3.0) * Math.PI * Math.pow(radius, 3);
 
-		System.out.printf("The circumference is: %.1fcm.\n", circumference);
-		System.out.printf("The area is: %.1fcm².\n", area);
-		System.out.printf("The volume is: %.1fcm³.\n", volume);
+//		[widths]
+//		0 => zero padding
+//		just number => right justified padding
+//		- => left justified padding
 
-		scanner.close();
+
+//		[.precision] for float/double
+//		0.1 => 9.9
+//		0.2 => 9.99
+//		0.3 => 9.999
+
+
+//		[specifier-character]
+//		s => String
+//		c => char
+//		d => int
+//		f => double
+//		b => booleanfe
+
+
+		String name = "Spongebob";
+		char firstLetter = name.charAt(0);
+		int age = 23;
+		double height = 1.5;
+		boolean isEmployed = true;
+
+		System.out.printf("Hello %s.\n", name);
+		System.out.printf("Your name start with %c.\n", firstLetter);
+		System.out.printf("Your age is %d.\n", age);
+		System.out.printf("Your height is %f.\n", height);
+		System.out.printf("Your isEmployed is %b\n", isEmployed);
 	}
 }
