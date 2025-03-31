@@ -4,73 +4,138 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-//		ROCK - PAPER - SCISSORS GAME
+//		JAVA SLOT MACHINE
 
-//		1. declare vars
-//		2. get choice from the user
-//		3. get random choice for the computer
-//		4. check win condition
-//		5. ask to play again?
-//		6. goodbye message
+//		1. Declare variables
+//		2. display welcome message
+//		3. can play if balance > 0
+//		4. enter bet amount
+//		    1. check if BET < BALANCE
+//			2. check if BET > 0
+//		    3. subtract bet from balance
+//		5. Spin row
+//		6. print row
+//		7. get payout
+//		8. ask to play again
+//		9. display exit message
 
 		Scanner scanner = new Scanner(System.in);
-		Random random = new Random();
 
 //		1. =>
-		String[] choices = {"ROCK", "PAPER", "SCISSORS"};
-		String playerChoice;
-		String computerChoice;
-		String playAgain = "YES";
+		double balance = 100;
+		double bet;
+		double payout;
+		String[] rows;
+		String playAgain = "Y";
 
-		do {
-			System.out.println("------------------------------------------");
-			System.out.println("Welcome to the Rock, Paper, Scissors game!");
-			System.out.println("------------------------------------------");
+//		2. =>
+		System.out.println("=================================");
+		System.out.println("Welcome to the JAVA slot machine!");
+		System.out.println("Symbols: 🍋‍ 🍒 🔔 ⭐ 🍇");
+		System.out.println("=================================");
 
-			//		2. =>
-			playerChoice = getUserChoice(scanner);
+//		3. =>
+		while (balance > 0) {
+			System.out.println("Current balance: $" + balance);
+			System.out.print("Place your bet amount: ");
+			bet = scanner.nextDouble();
+			scanner.nextLine();
 
-//			3. =>
-			computerChoice = choices[random.nextInt(choices.length)];
-			System.out.println("Computer choice: " + computerChoice);
-
-//			4. =>
-			System.out.println("************");
-			if (computerChoice.equals(playerChoice)) {
-				System.out.println("It's a tie!");
-			} else if (checkWin(playerChoice, computerChoice)) {
-				System.out.println("You win!");
+			if (bet > balance) {
+				System.out.println("INSUFFICIENT BALANCE!");
+				continue;
+			} else if (bet <= 0) {
+				System.out.println("BET MUST BE GREATER THAN 0!");
 			} else {
-				System.out.println("You lose!");
+				balance -= bet;
 			}
-			System.out.println("************");
 
+			System.out.println("Spinning...");
 //			5. =>
-			System.out.print("Do you want to play again? (yes/no): ");
-			playAgain = scanner.nextLine().toUpperCase();
-		} while (playAgain.equals("YES"));
+			rows = spinRow();
+//			6. =>
+			printRow(rows);
+//			7. =>
+			payout = getPayout(rows, bet);
+			if (payout > 0) {
+				System.out.println("You won $" + payout + "!");
+				balance += payout;
+			} else {
+				System.out.println("Sorry You lost this round!");
+			}
 
-//		6. =>
-		System.out.println("Goodbye! See you next time!");
+//			8. =>
+			playAgain = askToPlayAgain(scanner);
+			if (!playAgain.equals("Y")) {
+				break;
+			}
+		}
 
+//		9. =>
+		System.out.println("Thanks for playing! Your final balance is $" + balance);
 		scanner.close();
 	}
 
-	static boolean checkWin(String playerChoice, String computerChoice) {
-		return playerChoice.equals("ROCK") && computerChoice.equals("SCISSORS") ||
-				playerChoice.equals("PAPER") && computerChoice.equals("ROCK") ||
-				playerChoice.equals("SCISSORS") && computerChoice.equals("PAPER");
-	}
+	static String[] spinRow() {
 
-	static String getUserChoice(Scanner scanner) {
-		System.out.print("Please enter your choice (ROCK, PAPER, SCISSORS): ");
-		String userChoice = scanner.nextLine().toUpperCase();
+		String[] symbols = {"🍋‍", "🍒", "🔔", "⭐", "🍇"};
+		String[] row = new String[3];
 
-		if (!userChoice.equals("ROCK") && !userChoice.equals("PAPER") && !userChoice.equals("SCISSORS")) {
-			System.out.println("Invalid choice!");
-			return getUserChoice(scanner);
+		Random random = new Random();
+		for (int i = 0; i < row.length; i++) {
+			row[i] = symbols[random.nextInt(symbols.length)];
 		}
 
-		return userChoice;
+		return row;
+	}
+
+	static void printRow(String[] row) {
+		System.out.println("***************");
+		System.out.println(" " + String.join(" | ", row));
+		System.out.println("***************");
+	}
+
+	static double getPayout(String[] row, double bet) {
+		if (row[0].equals(row[1]) && row[1].equals(row[2])) {
+			return switch (row[0]) {
+				case "🍋" -> bet * 3;
+				case "🍒" -> bet * 4;
+				case "🔔" -> bet * 5;
+				case "⭐" -> bet * 10;
+				case "🍇" -> bet * 20;
+				default -> 0;
+			};
+		} else if (row[0].equals(row[1])) {
+			return switch (row[0]) {
+				case "🍋" -> bet * 1;
+				case "🍒" -> bet * 2;
+				case "🔔" -> bet * 3;
+				case "⭐" -> bet * 5;
+				case "🍇" -> bet * 10;
+				default -> 0;
+			};
+		} else if (row[1].equals(row[2])) {
+			return switch (row[1]) {
+				case "🍋" -> bet * 1.5;
+				case "🍒" -> bet * 2.5;
+				case "🔔" -> bet * 3.5;
+				case "⭐" -> bet * 5.5;
+				case "🍇" -> bet * 10.5;
+				default -> 0;
+			};
+		}
+
+		return 0;
+	}
+
+	static String askToPlayAgain(Scanner scanner) {
+		System.out.print("Play again? (Y/N): ");
+		String playAgain = scanner.nextLine().toUpperCase();
+		if (!playAgain.equals("Y") && !playAgain.equals("N")) {
+			System.out.println("Invalid input! Please enter 'Y' or 'N' to continue!");
+			askToPlayAgain(scanner);
+		}
+
+		return playAgain.toUpperCase();
 	}
 }
