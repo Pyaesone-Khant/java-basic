@@ -1,29 +1,37 @@
-import java.util.Scanner;
-
 public class Main {
 
 	public static void main(String[] args) {
+//		varargs => allow a method to accept a varying # of arguments
+//				   make methods more flexible, no more overloaded methods
+//		           java will pack the arguments into an array => (...) ellipse
 
-		Scanner scanner = new Scanner(System.in);
+		System.out.println(average());
 
-		String[] foods;
-		int size;
+	}
 
-		System.out.print("What # of foods do you want?: ");
-		size = scanner.nextInt();
-		scanner.nextLine();
+	static int add(int... numbers) {
+		int sum = 0;
 
-		foods = new String[size];
-
-		for (int i = 0; i < foods.length; i++) {
-			System.out.print("Enter a food: ");
-			foods[i] = scanner.nextLine();
+		if (numbers.length == 0) {
+			return sum;
 		}
 
-		for (String food : foods) {
-			System.out.println(food);
+		for (int i : numbers) {
+			sum += i;
+		}
+		return sum;
+	}
+
+	static double average(double... numbers) {
+		double sum = 0;
+
+		if (numbers.length == 0) {
+			return sum;
 		}
 
-		scanner.close();
+		for (double i : numbers) {
+			sum += i;
+		}
+		return sum / numbers.length;
 	}
 }
