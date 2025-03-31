@@ -1,17 +1,29 @@
 public class Main {
 
 	public static void main(String[] args) {
-		Student student1 = new Student("John", 25, "Computer Science");
-		Student student2 = new Student("Jane", 23, "Electrical Engineering");
 
-		System.out.println("Student 1 => ");
-		System.out.println(student1.name);
-		System.out.println(student1.age);
-		System.out.println(student1.major);
+		User user = new User();
+		User user1 = new User("Pyaesone Khant");
+		User user2 = new User("Woodi", "woodi@gmail.com");
+		User user3 = new User("PK", "pk@gmail.com", 23);
 
-		System.out.println("\nStudent 2 => ");
-		System.out.println(student2.name);
-		System.out.println(student2.age);
-		System.out.println(student2.major);
+		System.out.println(user.username);
+		System.out.println(user.email);
+		System.out.println(user.age);
+		System.out.println();
+
+		System.out.println(user1.username);
+		System.out.println(user1.email);
+		System.out.println(user1.age);
+		System.out.println();
+
+		System.out.println(user2.username);
+		System.out.println(user2.email);
+		System.out.println(user2.age);
+		System.out.println();
+
+		System.out.println(user3.username);
+		System.out.println(user3.email);
+		System.out.println(user3.age);
 	}
 }
