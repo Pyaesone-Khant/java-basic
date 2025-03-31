@@ -1,37 +1,20 @@
 public class Main {
 
 	public static void main(String[] args) {
-//		varargs => allow a method to accept a varying # of arguments
-//				   make methods more flexible, no more overloaded methods
-//		           java will pack the arguments into an array => (...) ellipse
+//		2D array = an array where each element is an array
+//		useful for storing a matrix of data
 
-		System.out.println(average());
+		String[] fruits = {"apple", "banana", "orange"};
+		String[] vegetables = {"carrot", "tomato", "pepper"};
+		String[] meats = {"beef", "pork", "chicken"};
 
-	}
+		String[][] menu = {fruits, vegetables, meats};
 
-	static int add(int... numbers) {
-		int sum = 0;
-
-		if (numbers.length == 0) {
-			return sum;
+		for (String[] row : menu) {
+			for (String item : row) {
+				System.out.print(item + " ");
+			}
+			System.out.println();
 		}
-
-		for (int i : numbers) {
-			sum += i;
-		}
-		return sum;
-	}
-
-	static double average(double... numbers) {
-		double sum = 0;
-
-		if (numbers.length == 0) {
-			return sum;
-		}
-
-		for (double i : numbers) {
-			sum += i;
-		}
-		return sum / numbers.length;
 	}
 }
