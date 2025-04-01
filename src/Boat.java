@@ -1,4 +1,4 @@
-public class Boat extends Vehicle {
+public class Boat implements Vehicle {
 
 	@Override
 	public void go() {
