@@ -2,13 +2,10 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Dog dog = new Dog();
-		;
-		Cat cat = new Cat();
-		Fish fish = new Fish();
+		Car car = new Car("Ford", "Ranger", 2020, "Black");
+		Car car2 = new Car("BMW", "M3", 2022, "Blue");
 
-		dog.move();
-		cat.move();
-		fish.move();
+		System.out.println(car);
+		System.out.println(car2);
 	}
 }
