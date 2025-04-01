@@ -2,10 +2,12 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Car car = new Car("Ford", "Ranger", 2020, "Black");
-		Car car2 = new Car("BMW", "M3", 2022, "Blue");
+		Circle circle = new Circle(10);
+		Triangle triangle = new Triangle(4, 5);
+		Rectangle rectangle = new Rectangle(10, 4);
 
-		System.out.println(car);
-		System.out.println(car2);
+		System.out.println(circle.area());
+		System.out.println(triangle.area());
+		System.out.println(rectangle.area());
 	}
 }
