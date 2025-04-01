@@ -1,15 +1,10 @@
 public class Main {
 
 	public static void main(String[] args) {
+		Student student = new Student("Pyaesone", "Khant", "CSE");
+		student.showMajor();
 
-		Dog dog = new Dog();
-		Cat cat = new Cat();
-
-		Plant plant = new Plant();
-
-		System.out.println(dog.lives);
-		System.out.println(cat.lives);
-
-		plant.photosynthesize();
+		Employee employee = new Employee("Woodi", "Dooki", 1000000);
+		employee.showSalary();
 	}
 }

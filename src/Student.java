@@ -1,13 +1,13 @@
-public class Student {
+public class Student extends Person {
 
-	String name;
-	int age;
 	String major;
 
-	//	constructor => a special method to initialize objects. You can pass arguments to a constructor and set up initial values.
-	Student(String name, int age, String major) {
-		this.name = name;
-		this.age = age;
+	Student(String firstName, String lastName, String major) {
+		super(firstName, lastName);
 		this.major = major;
+	}
+
+	void showMajor() {
+		System.out.println(this.firstName + " is a " + this.major + " student.");
 	}
 }
