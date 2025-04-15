@@ -3,15 +3,22 @@ public class Car implements Vehicle {
     private final String make;
     private final String model;
     private final int year;
+    Engine engine;
     private int price;
     private String color;
 
-    Car(String make, String model, int year, String color, int price) {
+    Car(String make, String model, int year, String color, int price, String engineType) {
         this.make = make;
         this.model = model;
         this.year = year;
         this.color = color;
         this.price = price;
+        this.engine = new Engine(engineType);
+    }
+
+    void start() {
+        this.engine.start();
+        System.out.printf("The %s is running!", this.model);
     }
 
     String getModel() {
