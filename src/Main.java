@@ -1,19 +1,25 @@
+import java.util.Scanner;
+
 public class Main {
 
 	public static void main(String[] args) {
-//		polymorphism => "POLY" = "MANY"
-//		             => "MORPH" = "SHAPE"
-//		             => Objects can identity as other objects.
-//			         => Objets can be treated as objects of a common superclass.
+//		runtime polymorphism => when the method that gets executed is decided at runtime based on the actual type of the object.
 
-		Car car = new Car("BMW", "M3", 2020, "Black");
-		Boat boat = new Boat();
-		Bike bike = new Bike();
+		Animal animal;
 
-		Vehicle[] vehicles = {car, boat, bike};
+		Scanner scanner = new Scanner(System.in);
 
-		for (Vehicle vehicle : vehicles) {
-			vehicle.go();
+		System.out.print("Would you like a dog or cat? (1 = dog, 2 = cat): ");
+		int choice = scanner.nextInt();
+
+		if(choice == 1){
+			animal = new Dog();
+			animal.speak();
+		}else if(choice == 2){
+			animal = new Cat();
+			animal.speak();
 		}
+
+		scanner.close();
 	}
 }
