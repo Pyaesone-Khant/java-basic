@@ -1,16 +1,19 @@
 public class Main {
 
     public static void main(String[] args) {
-//      they help product object data and rules for accessing or modifying them.
-//        GETTER = methods that make a field READABLE.
-//        SETTER = methods that make a field WRITEABLE.
 
-        Car car = new Car("FORD", "Ranger", 2021, "Navy", 10000);
+//        Aggregation = represents a "has-a" relationship between objects.
+//                      One object contains another object as part of its structure,
+//                      but the contained object/s can exist independently.
 
-        car.setColor("RED");
-        car.setPrice(-20000); // this gonna throw an err msg
+        Book book1 = new Book("Atomic Habits", 320);
+        Book book2 = new Book("Surrounded by Idiots", 280);
+        Book book3 = new Book("The Law of Human Nature", 420);
 
-        System.out.println(car.getColor() + " " + car.getModel() + " " + car.getPrice());
+        Book[] books = {book1, book2, book3};
 
+        Library library = new Library("PK", 2023, books);
+
+        library.displayInfo();
     }
 }
