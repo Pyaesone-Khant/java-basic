@@ -1,27 +1,31 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class Main {
 
     public static void main(String[] args) {
 
-//    Wrapper class = Allow primitive values (int, char, double, boolean)
-//                    to be used as objects. "Wrap them in an object"
-//                    Generally, don't wrap primitives unless you need an object.
-//                    Allows use of Collections Framework and static Utility Methods.
+//              ArrayList = A resizable array that stores objects (autoboxing).
+//              Arrays are fixed in size, but ArrayLists can change.
 
-//        this is not allow to assign
-//        Integer a = new Integer(123);
-//        Double d = new Double(3.14);
-//        Character c = new Character('$');
-//        Boolean b = new Boolean(true);
+        ArrayList<String> fruits = new ArrayList<>();
 
-//        Autoboxing
-        Integer a = 123;
-        Double d = 3.14;
-        Character c = '$';
-        Boolean b = true;
+        fruits.add("Banana");
+        fruits.add("Pineapple");
+        fruits.add("Apple");
+        fruits.add("Orange");
 
-//        Unboxing
-        int x = a;
-        boolean y = b;
+//        fruits.remove(0) //remove "Banana"
+//        fruits.set(1, "Coconut"); //set index 1 to Coconut
 
+//        System.out.println(fruits);
+//        System.out.println(fruits.size());
+
+        Collections.sort(fruits);
+
+        for (String fruit : fruits) {
+            System.out.println(fruit);
+        }
     }
+
 }
