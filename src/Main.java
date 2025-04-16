@@ -1,32 +1,31 @@
-import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-
-//              ArrayList = A resizable array that stores objects (autoboxing).
-//              Arrays are fixed in size, but ArrayLists can change.
+//        Exception = an event that interrupts the normal flow of a program
+//                    (Dividing by zero, file not found, mismatch input type)
+//                    Surrounded any dangerous code with a try{} block
+//                    try{}, catch{}, finally{}
 
         Scanner scanner = new Scanner(System.in);
 
-        ArrayList<String> foods = new ArrayList<>();
-
-        System.out.print("Enter the # of food you would like to add: ");
-        int numOfFood = scanner.nextInt();
-        scanner.nextLine();
-
-        for (int i = 1; i <= numOfFood; i++) {
-            System.out.print("Enter food # " + i + ": ");
-            String food = scanner.nextLine();
-
-            foods.add(food);
+        try {
+            System.out.print("Enter a number: ");
+            int number = scanner.nextInt();
+            System.out.println(number);
+        } catch (InputMismatchException e) {
+            System.out.println("THAT WASN'T A NUMBER!");
+        } catch (ArithmeticException e) {
+            System.out.println("YOU CAN'T DIVIDE BY ZERO!");
+        } catch (Exception e) {
+//            SAFETY NET
+            System.out.println("SOMETHING WENT WRONG!");
+        } finally {
+            scanner.close();
+            System.out.println("THIS ONE WILL ALWAYS BE EXECUTED!");
         }
-
-        System.out.println("Here are the food you've added: ");
-        System.out.println(foods);
-
-        scanner.close();
     }
 
 }
