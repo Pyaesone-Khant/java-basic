@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Scanner;
 
 public class Main {
 
@@ -8,24 +8,25 @@ public class Main {
 //              ArrayList = A resizable array that stores objects (autoboxing).
 //              Arrays are fixed in size, but ArrayLists can change.
 
-        ArrayList<String> fruits = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
 
-        fruits.add("Banana");
-        fruits.add("Pineapple");
-        fruits.add("Apple");
-        fruits.add("Orange");
+        ArrayList<String> foods = new ArrayList<>();
 
-//        fruits.remove(0) //remove "Banana"
-//        fruits.set(1, "Coconut"); //set index 1 to Coconut
+        System.out.print("Enter the # of food you would like to add: ");
+        int numOfFood = scanner.nextInt();
+        scanner.nextLine();
 
-//        System.out.println(fruits);
-//        System.out.println(fruits.size());
+        for (int i = 1; i <= numOfFood; i++) {
+            System.out.print("Enter food # " + i + ": ");
+            String food = scanner.nextLine();
 
-        Collections.sort(fruits);
-
-        for (String fruit : fruits) {
-            System.out.println(fruit);
+            foods.add(food);
         }
+
+        System.out.println("Here are the food you've added: ");
+        System.out.println(foods);
+
+        scanner.close();
     }
 
 }
