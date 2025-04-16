@@ -2,14 +2,26 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        Composition = represents a "part-of" relationship between objects.
-//                      for eg: an engine is a "part-of" the car.
-//                      Allows complex objects to be constructed from smaller objects.
+//    Wrapper class = Allow primitive values (int, char, double, boolean)
+//                    to be used as objects. "Wrap them in an object"
+//                    Generally, don't wrap primitives unless you need an object.
+//                    Allows use of Collections Framework and static Utility Methods.
 
-        Car car = new Car("FORD", "Ranger", 2020, "NAVY", 20000, "V8");
+//        this is not allow to assign
+//        Integer a = new Integer(123);
+//        Double d = new Double(3.14);
+//        Character c = new Character('$');
+//        Boolean b = new Boolean(true);
 
-        System.out.println(car.getModel());
-        System.out.println(car.engine.type);
-        car.start();
+//        Autoboxing
+        Integer a = 123;
+        Double d = 3.14;
+        Character c = '$';
+        Boolean b = true;
+
+//        Unboxing
+        int x = a;
+        boolean y = b;
+
     }
 }
