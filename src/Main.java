@@ -1,54 +1,113 @@
-import javax.sound.sampled.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
 	public static void main(String[] args) {
-//        how to play Audio with JAVA (.wav, .au, .aiff)
+// Java HANGMAN GAME
 
-		String filePath = "src\\The Last Bit Of Us.wav";
+		String word = "pizza";
 
-		File file = new File(filePath);
+		Scanner scanner = new Scanner(System.in);
 
-		try (
-				Scanner scanner = new Scanner(System.in);
-				AudioInputStream ais = AudioSystem.getAudioInputStream(file)
-		) {
-			Clip clip = AudioSystem.getClip();
-			clip.open(ais);
+		ArrayList<Character> chars = new ArrayList<>();
+		int wrongGuess = 0;
 
-			String response = "";
-			while (!response.equals("Q")) {
-				System.out.println("P = Play");
-				System.out.println("S = Stop");
-				System.out.println("R = Reset");
-				System.out.println("Q = Quit");
-				System.out.print("Enter your choice: ");
-
-				response = scanner.nextLine().toUpperCase();
-
-				switch (response) {
-					case "P" -> clip.start();
-					case "S" -> clip.stop();
-					case "R" -> clip.setMicrosecondPosition(0);
-					case "Q" -> clip.close();
-					default -> System.out.println("Invalid choice!");
-				}
-			}
-		} catch (FileNotFoundException e) {
-			System.out.println("File Not Found!");
-		} catch (UnsupportedAudioFileException e) {
-			System.out.println("Audio Format not supported");
-		} catch (LineUnavailableException e) {
-			System.out.println("Unable to access the audio resource!");
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
-			System.out.println("Something went wrong!");
-		} finally {
-			System.out.println("Done!");
+		for (int i = 0; i < word.length(); i++) {
+			chars.add('_');
 		}
+
+		System.out.println("========================");
+		System.out.println("Welcome to Java Hangman!");
+		System.out.println("========================");
+
+		while (wrongGuess < 6) {
+			if (wrongGuess > 0) {
+				System.out.print(getHangmanArt(wrongGuess));
+				System.out.println();
+			}
+			System.out.println();
+			System.out.print("Word: ");
+			for (char c : chars) {
+				System.out.print(c + " ");
+			}
+			System.out.println();
+
+			System.out.print("Guess a letter: ");
+			char guess = scanner.next().toLowerCase().charAt(0);
+
+			if (word.indexOf(guess) != -1) {
+				System.out.println("***CORRECT***");
+
+				for (int i = 0; i < word.length(); i++) {
+					if (word.charAt(i) == guess) {
+						chars.set(i, guess);
+					}
+				}
+
+				if (!chars.contains('_')) {
+					System.out.println(getHangmanArt(wrongGuess));
+					System.out.println("YOU WIN!");
+					System.out.println("The word was: " + word);
+					break;
+				}
+
+			} else {
+				wrongGuess++;
+				System.out.println("***WRONG***");
+			}
+		}
+
+		if (wrongGuess >= 6) {
+			System.out.println(getHangmanArt(wrongGuess));
+			System.out.println("GAME OVER!");
+			System.out.println("YOU LOSE!");
+			System.out.println("The word was " + word);
+		}
+		
+		scanner.close();
 	}
+
+	static String getHangmanArt(int guess) {
+		return switch (guess) {
+			case 0 -> """
+					
+					
+					
+					""";
+			case 1 -> """
+					  O
+					
+					
+					""";
+			case 2 -> """
+					  O
+					  |
+					
+					""";
+			case 3 -> """
+					  O
+					 /|
+					
+					""";
+			case 4 -> """
+					  O
+					 /|\\
+					
+					""";
+			case 5 -> """
+					  O
+					 /|\\
+					 /
+					""";
+			case 6 -> """
+					  O
+					 /|\\
+					 / \\
+					""";
+			default -> "";
+		};
+	}
+
+	;
 }
