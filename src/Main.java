@@ -1,36 +1,31 @@
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
+import java.io.FileReader;
 import java.io.IOException;
 
 public class Main {
 
 	public static void main(String[] args) {
-//        how to write a file using java (4 popular ways)
+//        how to read a file using Java (3 popular ways)
 
-//        1. FileWriter => good for small/medium-sized text files
-//        2. BufferedWriter => better performance for large amounts of text
-//        3. PrintWriter => best for structured data, like reports or logs
-//        4. FileOutputStream => best for binary files (eg: images, audio files)
+//		1. BufferedReader + FileReader => best for reading text files line-by-line
+//		2. FileInputStream => best for binary files (eg: images, audio files)
+//		3. RandomAccessFile => best for read/writer specific portions of a large file.
+
+		String filePath = "text.txt";
 
 
-//		FileWriter Example
-
-		String filePath = "text.txt"; // can also give absolut file path (eg: C:\Users\hp user\Desktop\)
-		String text = """
-				I like yours Sketchers
-				You like me, my Gucci Shoes
-				I'll buy you the purse
-				If you only show me your BooBs
-				""";
-
-		try (FileWriter fileWriter = new FileWriter(filePath)) {
-			fileWriter.write(text);
-			System.out.println("File written!");
+		try (BufferedReader br = new BufferedReader(new FileReader(filePath));) {
+			System.out.println("File found!");
+			String line;
+			while ((line = br.readLine()) != null) {
+				System.out.println(line);
+			}
 		} catch (FileNotFoundException e) {
-			System.out.println("Could not locate file location!.");
+			System.out.println("File not found!");
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
-			System.out.println("Something went wrong while writing to the file!");
+			throw new RuntimeException(e);
 		}
+
 	}
 }
